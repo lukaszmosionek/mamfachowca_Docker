@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:80"  # host:container
+    volumes:
+      - ./backend:/var/www/html
+    working_dir: /var/www/html
+    env_file:
+      - ./backend/.env.docker
+    networks:
+      - app-network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:8080" # domyślny port Vite
+    env_file:
+      - ./backend/.env.docker
+    working_dir: /app
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
