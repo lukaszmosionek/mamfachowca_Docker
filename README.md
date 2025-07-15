@@ -34,4 +34,4 @@ git clone https://github.com/lukaszmosionek/mamfachowca_Docker.git
 cd mamfachowca_Docker
 
 # Run the setup script (automates build & container start)
-bash setup.sh
+bash start.sh
