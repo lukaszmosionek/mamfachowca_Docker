@@ -33,5 +33,9 @@ git clone https://github.com/lukaszmosionek/mamfachowca_Docker.git
 # Navigate into the project
 cd mamfachowca_Docker
 
-# Run the setup script (automates build & container start)
-bash start.sh
+# # Klonowanie repozytoriów
+git clone https://github.com/lukaszmosionek/mamfachowca_FRONTEND_Vue3.git frontend
+git clone https://github.com/lukaszmosionek/mamfachowca_BACKEND_LaravelAPI.git backend
+
+# Budowanie i uruchamianie kontenerów
+docker-compose up --build
