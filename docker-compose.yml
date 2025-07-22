@@ -11,6 +11,35 @@ services:
       - ./backend/.env.docker
     networks:
       - app-network
+    depends_on:
+      - db
+
+  db:
+    container_name: mamfachowca_docker-database
+    platform: "linux/amd64"
+    image: mysql:5.7
+    env_file:
+      - ./backend/.env.docker
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laraveluser
+      MYSQL_PASSWORD: laravelpass
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 8001:80
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root    
+    networks:
+      - app-network  
 
   frontend:
     container_name: mamfachowca_docker-frontend
@@ -28,3 +57,6 @@ services:
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  dbdata:
