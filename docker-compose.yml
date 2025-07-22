@@ -4,8 +4,8 @@ services:
     build: ./backend
     ports:
       - "8000:80"  # host:container
-    volumes:
-      - ./backend:/var/www/html
+    #volumes:
+    #  - ./backend:/var/www/html
     working_dir: /var/www/html
     env_file:
       - ./backend/.env.docker
